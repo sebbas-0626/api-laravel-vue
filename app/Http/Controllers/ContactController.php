@@ -9,7 +9,7 @@ class ContactController extends Controller
 {
     public function contacts()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::orderBy('id', 'asc')->paginate(10);
         return response()->json([
             'contacts' => $contacts,
             'message' => 'contacts',
@@ -71,12 +71,16 @@ class ContactController extends Controller
     public function updateContact($id, Request $request)
 {
     try {
-        $contact = Contact::findOrFail($id);
-        $contact->name = $request->name;
-        $contact->email = $request->email;
-        $contact->designation = $request->designation;
-        $contact->contact_no = $request->contact_no;
-        $contact->save();
+        $contact = Contact::find($id);
+
+        $contact->update($request->all());
+
+        // $contact->update([
+        //     'name' => $request->name,
+        //     'email' => $request['email'],
+        //     'designation' => $request->designation,
+        //     'contact_no' => $request->contact_no
+        // ]);
 
         return response()->json([
             'message' => 'Contacto actualizado correctamente',
