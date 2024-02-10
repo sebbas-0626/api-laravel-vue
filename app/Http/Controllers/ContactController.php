@@ -43,7 +43,7 @@ class ContactController extends Controller
         if ($contact) {
             $contact->delete();
             return response()->json([
-                'message' => 'contact Delete',
+                'message' => 'contact Delete message backend',
                 'code' => 200
             ]);
         } else {
@@ -69,29 +69,28 @@ class ContactController extends Controller
 
 
     public function updateContact($id, Request $request)
-{
-    try {
-        $contact = Contact::find($id);
+    {
+        try {
+            $contact = Contact::find($id);
 
-        $contact->update($request->all());
+            $contact->update($request->all());
 
-        // $contact->update([
-        //     'name' => $request->name,
-        //     'email' => $request['email'],
-        //     'designation' => $request->designation,
-        //     'contact_no' => $request->contact_no
-        // ]);
+            // $contact->update([
+            //     'name' => $request->name,
+            //     'email' => $request['email'],
+            //     'designation' => $request->designation,
+            //     'contact_no' => $request->contact_no
+            // ]);
 
-        return response()->json([
-            'message' => 'Contacto actualizado correctamente',
-            'code' => 200
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Error al actualizar el contacto: ' . $e->getMessage(),
-            'code' => 500
-        ]);
+            return response()->json([
+                'message' => 'Contacto actualizado correctamente',
+                'code' => 200
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar el contacto: ' . $e->getMessage(),
+                'code' => 500
+            ]);
+        }
     }
-}
-
 }
