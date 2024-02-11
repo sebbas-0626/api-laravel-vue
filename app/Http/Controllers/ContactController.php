@@ -83,7 +83,7 @@ class ContactController extends Controller
             // ]);
 
             return response()->json([
-                'message' => 'Contacto actualizado correctamente',
+                'message' => 'Contacto actualizado correctamente desd el bakend',
                 'code' => 200
             ]);
         } catch (\Exception $e) {
